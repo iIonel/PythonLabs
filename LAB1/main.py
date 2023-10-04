@@ -3,6 +3,7 @@ def gcd(n1,n2):
     if n2 == 0:
         return n1
     return gcd(n2,n1 % n2)
+
 def final_gcd(numbers):
     result = 1
     for index in range(1,len(numbers)):
@@ -21,6 +22,7 @@ def how_many_vowels (s):
         if s[index] in vowels:
             counter = counter + 1
     return counter
+
 print(how_many_vowels("asfAEasgki"))
 
 
@@ -32,6 +34,7 @@ def number_of_occurences (s1, s2):
         if aux == s1:
             counter = counter + 1
     return counter
+
 print(number_of_occurences("ab","abcdabb"))
 
 
@@ -45,6 +48,7 @@ def upper_to_lowercase_underscore(s):
         else:
             final = final + s[index]
     return final[1:]
+
 print(upper_to_lowercase_underscore("MergeDa"))
 
 
@@ -79,6 +83,7 @@ def palindrome(n):
         if s[index] != s[-index-1]:
             return 0
     return 1
+
 print(palindrome(31213))
 
 
@@ -95,6 +100,7 @@ def extract_number(s):
                 else:
                     return number
     return number
+
 print(extract_number("An apple is 123 USD"))
 
 
@@ -107,6 +113,7 @@ def how_many_bits(n):
         if s[index] == "1":
             counter = counter + 1
     return counter
+
 print(how_many_bits(24))
 
 
@@ -135,6 +142,7 @@ def most_common_letter(s):
             max = freq_lowercase[index]
             letter = chr(index + ord("A"))
     return letter
+
 print(most_common_letter("an apple is not a tomato"))
 
 
@@ -145,4 +153,5 @@ def how_many_words(s):
         if s[index] == " ":
             counter = counter + 1
     return counter + 1
+
 print(how_many_words("I have Python exam"))
