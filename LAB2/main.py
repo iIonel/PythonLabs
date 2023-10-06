@@ -100,7 +100,22 @@ print(exactly_x_items(lists,2))
 
 
 #EXERCITIU 7
+def palindrome(n):
+    s = str(n)
+    for index in range(0,len(s)):
+        if s[index] != s[-index-1]:
+            return 0
+    return 1
 
+def tuple_list(list):
+    final_list = []
+    for number in list:
+        if palindrome(number) == 1:
+            final_list.append(number)
+    palindrom_tuple = (len(final_list),max(final_list))
+    return palindrom_tuple
+
+print(tuple_list([1,2,3,4,121,54,14141]))
 
 
 #EXERCITIU 8
