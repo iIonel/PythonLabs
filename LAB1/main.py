@@ -7,7 +7,10 @@ def gcd(n1,n2):
 def final_gcd(numbers):
     result = 1
     for index in range(1,len(numbers)):
-        result = gcd(numbers[index-1],numbers[index])
+        if index == 1:
+            result = gcd(numbers[index-1],numbers[index])
+        else:
+            result = gcd(result,numbers[index])
     return result
 
 numbers = [int(x) for x in input().split()]
