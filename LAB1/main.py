@@ -26,7 +26,8 @@ def how_many_vowels (s):
             counter = counter + 1
     return counter
 
-print(how_many_vowels("asfAEasgki"))
+x = input()
+print(how_many_vowels(x))
 
 
 #EXERCITIU 3
@@ -38,7 +39,9 @@ def number_of_occurences (s1, s2):
             counter = counter + 1
     return counter
 
-print(number_of_occurences("ab","abcdabb"))
+s1 = input()
+s2 = input()
+print(number_of_occurences(s1,s2))
 
 
 #EXERCITIU 4
@@ -52,7 +55,8 @@ def upper_to_lowercase_underscore(s):
             final = final + s[index]
     return final[1:]
 
-print(upper_to_lowercase_underscore("MergeDa"))
+s = input()
+print(upper_to_lowercase_underscore(s))
 
 
 #EXERCITIU 5
@@ -75,8 +79,16 @@ def spiral_order(matrix, i,j,m,n):
         n -= 1
     return result
 
-matrix = [["f","i","r","s"],["n","_","l","t"],["o","b","a","_"],["h","t","y","p"]]
-print(spiral_order(matrix,0,0,4,4))
+matrix = []
+n = int(input())
+m = int(input())
+
+for i in range(n):
+    a = []
+    for j in range(m):
+        a.append(input())
+    matrix.append(a)
+print(spiral_order(matrix,0,0,n,m))
 
 
 #EXERCITIU 6
@@ -87,7 +99,8 @@ def palindrome(n):
             return 0
     return 1
 
-print(palindrome(31213))
+x = input()
+print(palindrome(x))
 
 
 #EXERCITIU 7
@@ -104,7 +117,8 @@ def extract_number(s):
                     return number
     return number
 
-print(extract_number("An apple is 123 USD"))
+s = str(input())
+print(extract_number(s))
 
 
 #EXERCITIU 8
@@ -117,7 +131,8 @@ def how_many_bits(n):
             counter = counter + 1
     return counter
 
-print(how_many_bits(24))
+n = int(input())
+print(how_many_bits(n))
 
 
 #EXERCITIU 9
@@ -146,7 +161,8 @@ def most_common_letter(s):
             letter = chr(index + ord("A"))
     return letter
 
-print(most_common_letter("an apple is not a tomato"))
+s = input()
+print(most_common_letter(s))
 
 
 #EXERCITIU 10
@@ -157,4 +173,5 @@ def how_many_words(s):
             counter = counter + 1
     return counter + 1
 
-print(how_many_words("I have Python exam"))
+s = input()
+print(how_many_words(s))
