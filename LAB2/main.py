@@ -9,7 +9,8 @@ def first_fibonacci(n):
     list.append(list[-2] + list[-1])
     return list
 
-print(first_fibonacci(10))
+fibo = int(input("First fibonnaci numbers: "))
+print(first_fibonacci(fibo - 1))
 
 
 #EXERCITIU 2
@@ -31,11 +32,25 @@ def main_function(numbers):
     x = [x for x in numbers if prime_check(x) == 1]
     return x
 
-print(main_function([1,2,3,4,5,6,7,8,9,10,11,12,13,14]))
+print("List of numbers: ")
+numbers = [int(x) for x in input().split()]
+print(main_function(numbers))
 
 
 #EXERCITIU 3
+print("List A: ")
+list_a = [x for x in input().split()]
+print("List B: ")
+list_b = [x for x in input().split()]
 
+print("Intersection: ")
+print([x for x in list_a if x in list_b])
+print("Union: ")
+print(list(list_a + [x for x in list_b if x not in list_a]))
+print("A-B: ")
+print([x for x in list_a if x not in list_b])
+print("B-A: ")
+print([x for x in list_b if x not in list_a])
 
 
 #EXERCITIU 4
@@ -47,7 +62,13 @@ def compose(notes, positions,start):
         final.append(notes[start])
     return final
 
-print(compose(["do", "re", "mi", "fa", "sol"], [1, -3, 4, 2], 2))
+print("Notes: ")
+notes = [x for x in input().split()]
+print("Positions: ")
+positions = [int(x) for x in input().split()]
+start = int(input("Start position: "))
+
+print(compose(notes, positions, start))
 
 
 #EXERCITIU 5
@@ -60,13 +81,21 @@ def replace_with_zeros(matrix):
                 matrix[i][j] = 0
     return matrix
 
-matrix = replace_with_zeros([
-    [3, 10, 2],
-    [1, 5, 0],
-    [73, 12, 91]
-])
+i = int(input("Number of rows: "))
+j = int(input("Number of columns: "))
 
-print(matrix)
+matrix = []
+for r in range(0,i):
+    row = []
+    for c in range(0,j):
+        row.append(int(input()))
+    matrix.append(row)
+
+matrix = replace_with_zeros(matrix)
+for r in range(0,i):
+    for c in range(0,j):
+        print(matrix[r][c],end=" ")
+    print()
 
 
 #EXERCITIU 6
@@ -95,8 +124,14 @@ def exactly_x_items(lists, x):
             items.append(number)
     return items
 
-lists = [[1,2,3], [2,3,4],[4,5,6],[4,1, "test"]]
-print(exactly_x_items(lists,2))
+n = int(input("Number of lists: "))
+lists = []
+for i in range(0,n):
+    curr_list = [x for x in input().split()]
+    lists.append(curr_list)
+
+x = int(input("Exactly times: "))
+print(exactly_x_items(lists,x))
 
 
 #EXERCITIU 7
@@ -108,30 +143,118 @@ def palindrome(n):
     return 1
 
 def tuple_list(list):
-    final_list = []
-    for number in list:
-        if palindrome(number) == 1:
-            final_list.append(number)
+    final_list = [x for x in list if palindrome(x) == 1]
     palindrom_tuple = (len(final_list),max(final_list))
     return palindrom_tuple
 
-print(tuple_list([1,2,3,4,121,54,14141]))
+print("List: ")
+list = [int(x) for x in input().split()]
+print(tuple_list(list))
 
 
 #EXERCITIU 8
+def generate_list(x, strings, flag):
+    a = []
+    for i in range(0, len(strings)):
+        b = []
+        for j in range(0, len(strings[i])):
+            if ord(strings[i][j]) % x == 0 and flag:
+                b.append(strings[i][j])
+            if ord(strings[i][j]) % x != 0 and not flag:
+                b.append(strings[i][j])
+        if len(b) > 0:
+            a.append(b)
+    return a
 
+x = int(input("Divisible by: "))
+print("My strings: ")
+strings = [list(x) for x in input().split()]
+flag_input = input("My flag (True/False): ")
+flag = flag_input.lower() == "true"
+final_list = generate_list(x, strings, flag)
+print("Final list:", final_list)
 
 
 #EXERCITIU 9
+def list_tuples(matrix):
+    final_list = []
+    for i in range(1,len(matrix)):
+        for j in range(0,len(matrix[0])):
+            for r in range(0, i):
+                if matrix[r][j] >= matrix[i][j]:
+                    tuple = (i,j)
+                    final_list.append(tuple)
+                    break
+    return final_list
 
+n = int(input("Rows: "))
+m = int(input("Columns: "))
+matrix = []
+for i in range(0,n):
+    row = []
+    for j in range(0,m):
+        row.append(int(input()))
+    matrix.append(row)
+print(list_tuples(matrix))
 
 
 #EXERCITIU 10
+def elements_tuple(lists):
+    x = max([len(x) for x in lists])
 
+    final_lists = []
+    for i in range(x):
+        tuple_list = tuple(lists[j][i] if i < len(lists[j]) else None for j in range(len(lists)))
+        final_lists.append(tuple_list)
+    return final_lists
+
+n = int(input("Number of lists: "))
+lists = []
+for i in range(n):
+    current_list = [x for x in input().split()]
+    lists.append(current_list)
+final_result = elements_tuple(lists)
+print(final_result)
 
 
 #EXERCITIU 11
+def order_list(lists):
+    return sorted(lists, key=lambda x: x[1][2])
 
+n = int(input("Number of lists: "))
+lists = []
+for i in range(n):
+    tuple_list = tuple(x for x in input().split())
+    lists.append(tuple_list)
+final = print(order_list(lists))
 
 
 #EXERCITIU 12
+def result_group(group):
+    group = sorted(group, key=lambda x: x[-2:])
+    i = 0
+    final_list = []
+
+    while i < len(group):
+        j = i + 1
+        ok = 1
+        tuple_list = [group[i]]
+
+        while ok == 1 and j < len(group):
+            if group[j][-2:] != group[i][-2:]:
+                i = j
+                ok = 0
+                tuple_list = tuple(tuple_list)
+                final_list.append(tuple_list)
+            else:
+                tuple_list.append(group[j])
+            j = j + 1
+        if ok == 1:
+            i = j
+
+    return final_list
+
+print("List of words: ")
+group_by_rhyme = input().split()
+result = result_group(group_by_rhyme)
+print(result)
