@@ -18,19 +18,6 @@ class Stack:
         else:
             return None
 
-'''
-stack = Stack()
-stack.push(32)
-stack.push(4)
-print(stack.stack)
-stack.pop()
-print(stack.stack)
-print(stack.peek())
-stack.pop()
-print(stack.stack)
-print(stack.peek())
-'''
-
 
 #EXERCITIU 2
 class Queue:
@@ -52,54 +39,50 @@ class Queue:
         else:
             return None
 
-'''
-queue = Queue()
-queue.push(12)
-queue.push(13)
-print(queue.queue)
-print(queue.peek())
-queue.pop()
-print(queue.queue)
-print(queue.peek())
-queue.pop()
-print(queue.queue)
-print(queue.peek())
-'''
-
 
 #EXERCITIU 3
 class Matrix:
-    def __init__(self,n,m):
+    def __init__(self, n, m):
         self.rows = n
         self.cols = m
         self.matrix = [[0] * self.cols for _ in range(self.rows)]
 
-    def getAll(self):
+    def get_all(self):
         return self.matrix
 
-    def getElement(self, i, j):
+    def get_element(self, i, j):
         return self.matrix[i][j]
 
-    def setElement(self, i, j, value):
+    def set_element(self, i, j, value):
         self.matrix[i][j] = value
 
-    def traspose(self):
+    def multiply(self, another):
+        if self.cols != another.rows:
+            return None
+
+        result = Matrix(self.rows, another.cols)
+
+        for i in range(self.rows):
+            for j in range(another.cols):
+                for k in range(self.cols):
+                    result.matrix[i][j] += self.matrix[i][k] * another.matrix[k][j]
+
+        return result
+
+    def transpose(self):
         transpose_matrix = [[self.matrix[j][i] for j in range(self.rows)] for i in range(self.cols)]
         self.matrix = transpose_matrix
         self.cols, self.rows = self.rows, self.cols
 
-matrix1 = Matrix(2,3)
-matrix1.setElement(0, 0, 1)
-matrix1.setElement(0, 1, 2)
-matrix1.setElement(0, 2, 3)
-matrix1.setElement(1, 0, 4)
-matrix1.setElement(1, 1, 5)
-matrix1.setElement(1, 2, 6)
+    def transform(self, transform):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                self.matrix[i][j] = transform(self.matrix[i][j])
 
-print(matrix1.getAll())
+    def iterate(self, func):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                func(i, j, self.matrix[i][j])
 
-matrix1.traspose()
-print(matrix1.getAll())
-
-matrix1.traspose()
-print(matrix1.getAll())
+    def iterate_lambda(self, func):
+        self.iterate(lambda i, j, val: self.set_element(i, j, func(val)))
