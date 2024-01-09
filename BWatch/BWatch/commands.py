@@ -1,8 +1,7 @@
 import sys
 from datetime import datetime
 
-from OMDb_api import check_name_series, get_imdb_link, get_series_aprox_score
-from OMDb_api import get_total_seasons
+from api import check_name_series, get_imdb_link, get_series_aprox_score, get_detail_seasons
 from database import get_series, delete_series, insert_series, update_score, get_snoozed, update_snooze, get_all_series, \
     get_score, get_episode
 
@@ -24,12 +23,8 @@ def add_series():
         try:
             season = input("Enter the last season: ")
             episode = input("Enter the last episode: ")
-            print(get_total_seasons(name))
-            if int(season) <= 0 or int(episode) <= 0:
-                raise ValueError("Invalid episode or season!")
-
-            if int(get_total_seasons(name)) < int(season):
-                raise ValueError("Invalid season!")
+            #if get_detail_seasons(name, int(season), int(episode)) == False:
+                #raise ValueError("Invalid episode or season!")
             break
         except ValueError as er:
             print(f"{er}")
