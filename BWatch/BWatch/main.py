@@ -1,6 +1,5 @@
 import connection as con
 import menu as m
-from api import total_series
 from commands import add_series, del_series, modify_score, snooze_series, list_of, exit_program
 
 
@@ -29,5 +28,4 @@ def execute():
 
 
 if __name__ == '__main__':
-    total_series()
     execute()

@@ -129,7 +129,9 @@ def list_of():
             print("------------------------------------------")
             print(f"\033[92mYOUR STATUS: SEASON {season}, EPISODE {episode}, SCORE {score}")
             print(f"{current_year} TV SHOWS WITH APROX SCORE: ")
-            get_series_aprox_score(math.floor(score))
+            new_series = get_series_aprox_score(float(score))
+            filtered_new_series = [s for s in new_series if get_series(s) is False]
+            print(filtered_new_series)
             print()
 
     print()

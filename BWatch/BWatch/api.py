@@ -35,19 +35,24 @@ def get_imdb_link(name):
 
 
 def get_rating_series(id):
-
+    response = requests.get(URL + 'show-details', {"q": id})
+    json_response = response.json()
+    rating = json_response['tvShow']['rating']
+    return rating
 
 def get_series_aprox_score(rating):
     response = requests.get(URL+'most-popular', {"page": 1})
     json_response = response.json()
-    series = json_response.get['tv_shows']
+    series = json_response['tv_shows']
     all_series = []
 
     for s in series:
        id = s['id']
-       if rating <= id and id <= rating + 1:
+       if int(rating) == int(float(get_rating_series(id))):
             all_series.append(s['name'])
 
     return all_series
+
+
 
 
