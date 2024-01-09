@@ -4,13 +4,21 @@ from commands import add_series, del_series, modify_score, snooze_series, list_o
 
 
 def execute():
+    # Trying connecting
     connection = con.connect_db()
+
     if connection:
+        # First instance of Menu
         menu = m.Menu()
         while True:
+            # Display Menu and all Commands
             menu.main_menu()
+
+            # Setting my current command
             menu.set_command(input("Enter command: "))
+
             if menu.valid_command():
+                # Executing my commands from Menu
                 if int(menu.get_command()) == 1:
                     add_series()
                 elif int(menu.get_command()) == 2:
@@ -24,6 +32,7 @@ def execute():
                 else:
                     exit_program()
             else:
+                # Invalid Command
                 menu.invalid()
 
 
