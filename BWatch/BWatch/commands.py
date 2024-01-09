@@ -133,7 +133,9 @@ def list_of():
             filtered_new_series = [s for s in new_series if get_series(s) is False]
             print(filtered_new_series)
             print()
+            print(f"{current_year} NEWS!!!: ")
 
+            print()
     print()
 
 
