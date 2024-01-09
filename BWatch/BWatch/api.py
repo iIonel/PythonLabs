@@ -34,14 +34,20 @@ def get_imdb_link(name):
     return imdb_url
 
 
-def total_series():
-    response = requests.get(OMDb_URL, {"apikey": KEY, "type": 'series'})
-    json_response = response.json()
-    print(json_response)
+def get_rating_series(id):
 
-def get_series_aprox_score():
-    response = requests.get(URL, {"apikey": KEY})
+
+def get_series_aprox_score(rating):
+    response = requests.get(URL+'most-popular', {"page": 1})
     json_response = response.json()
-    if "Error" in json_response:
-        return False
-    return True
+    series = json_response.get['tv_shows']
+    all_series = []
+
+    for s in series:
+       id = s['id']
+       if rating <= id and id <= rating + 1:
+            all_series.append(s['name'])
+
+    return all_series
+
+

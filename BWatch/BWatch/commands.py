@@ -1,3 +1,4 @@
+import math
 import sys
 from datetime import datetime
 
@@ -128,7 +129,7 @@ def list_of():
             print("------------------------------------------")
             print(f"\033[92mYOUR STATUS: SEASON {season}, EPISODE {episode}, SCORE {score}")
             print(f"{current_year} TV SHOWS WITH APROX SCORE: ")
-            get_series_aprox_score()
+            get_series_aprox_score(math.floor(score))
             print()
 
     print()
