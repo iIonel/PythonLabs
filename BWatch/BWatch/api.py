@@ -68,16 +68,18 @@ def get_new_episodes(name, episode, season):
     id = id_series(name)
     response = requests.get(URL + 'show-details', {"q": id})
     json_response = response.json()
-    all_episodes = json_response['tvShow']['episodes']
-    new_episodes = []
+    if 'episodes' in json_response['tvShow']:
+        all_episodes = json_response['tvShow']['episodes']
+        new_episodes = []
 
-    for ep in all_episodes:
-        curr_ep = ep['episode']
-        curr_season = ep['season']
+        for ep in all_episodes:
+            curr_ep = int(ep['episode'])
+            curr_season = int(ep['season'])
+            curr_date = ep['air_date']
 
-        if curr_season > season or (curr_season == season and episode < curr_ep):
-            new_episodes.append({season,episode})
-    return new_episodes
+            if curr_season > season or (curr_season == season and episode < curr_ep):
+                new_episodes.append({'date':curr_date,'season':curr_season,'episodes':curr_ep})
+        return new_episodes
 
 
 

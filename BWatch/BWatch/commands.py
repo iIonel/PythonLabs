@@ -125,16 +125,21 @@ def list_of():
             season, episode = get_episode(name)[0].split(", ")
             score = get_score(name)
             score = score[0]
+
             print(f"\033[96mTV SHOW: {name}")
             print("------------------------------------------")
             print(f"\033[92mYOUR STATUS: SEASON {season}, EPISODE {episode}, SCORE {score}")
             print(f"{current_year} TV SHOWS WITH APROX SCORE: ")
+
             new_series = get_series_aprox_score(float(score))
             filtered_new_series = [s for s in new_series if get_series(s) is False]
             print(filtered_new_series)
             print()
-            print("NEWS!!!: ")
-            print(get_new_episodes(name, int(episode), int(season)))
+
+            print("\033[96mNEWS!!!: \033[92m")
+            news = get_new_episodes(name, int(episode), int(season))
+            print(news)
+
             print()
     print()
 
