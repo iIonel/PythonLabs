@@ -2,7 +2,7 @@ import math
 import sys
 from datetime import datetime
 
-from api import check_name_series, get_imdb_link, get_series_aprox_score, get_detail_seasons
+from api import check_name_series, get_imdb_link, get_series_aprox_score, get_detail_seasons, get_new_episodes
 from database import get_series, delete_series, insert_series, update_score, get_snoozed, update_snooze, get_all_series, \
     get_score, get_episode
 
@@ -133,8 +133,8 @@ def list_of():
             filtered_new_series = [s for s in new_series if get_series(s) is False]
             print(filtered_new_series)
             print()
-            print(f"{current_year} NEWS!!!: ")
-
+            print("NEWS!!!: ")
+            print(get_new_episodes(name, int(episode), int(season)))
             print()
     print()
 

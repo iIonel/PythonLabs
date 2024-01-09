@@ -1,8 +1,10 @@
 import requests
 
+
 URL = "https://www.episodate.com/api/"
 OMDb_URL = "https://www.omdbapi.com/"
 KEY = 'b578a7b7'
+Youtube_KEY ='AIzaSyCpZSN2RFQK20d0xiSS73BLDJZ2mKNL-SY'
 
 
 def get_detail_seasons(name, episode, season):
@@ -52,6 +54,31 @@ def get_series_aprox_score(rating):
             all_series.append(s['name'])
 
     return all_series
+
+def id_series(name):
+    response = requests.get(URL + 'most-popular', {"page": 1})
+    json_response = response.json()
+    series = json_response['tv_shows']
+
+    for s in series:
+        if s['name'] == name:
+            return s['id']
+
+def get_new_episodes(name, episode, season):
+    id = id_series(name)
+    response = requests.get(URL + 'show-details', {"q": id})
+    json_response = response.json()
+    all_episodes = json_response['tvShow']['episodes']
+    new_episodes = []
+
+    for ep in all_episodes:
+        curr_ep = ep['episode']
+        curr_season = ep['season']
+
+        if curr_season > season or (curr_season == season and episode < curr_ep):
+            new_episodes.append({season,episode})
+    return new_episodes
+
 
 
 
